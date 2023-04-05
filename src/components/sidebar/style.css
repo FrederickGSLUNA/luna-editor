@@ -1,0 +1,204 @@
+.sidebar{
+  width: 50px;
+  height: 100vh;
+  background-color: var(--background-color);
+  z-index: 9;
+}
+
+.sidebar nav{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.sidebar nav ul{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0;
+  gap: 30px;
+  text-decoration: none;
+  list-style: none;
+}
+
+.sidebar button{
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.sidebar button:hover .icon{
+  filter: brightness(130%);
+}
+
+.brightness .icon{
+  filter: brightness(130%);
+}
+
+.icon{
+  width: 30px;
+  height: 30px;
+  fill: var(--text-color);
+}
+
+.icon.not{
+  fill: transparent;
+  stroke: var(--text-color);
+}
+
+button.logo-luna{
+  cursor: auto;
+}
+
+/*SidebarOptions*/
+.opciones{
+  position: relative;
+  padding: 15px 0;
+  overflow-x: hidden;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  z-index: 9;
+}
+
+.opciones h2{
+  font-size: 18px;
+  text-align: center;
+}
+
+.opciones{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.opciones label{
+  font-size: 14px;
+  font-weight: 400;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.opciones input, .opciones select{
+  background-color: #3c4045;
+  color: #eee;
+  border: 1px solid #333;
+  outline: none;
+  font-weight: 600;
+  font-size: 14px;
+  width: 90%;
+  height: 25px;
+  margin-top: 5px;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.opciones select option{
+  background-color: #3c4045;
+  color: #eee;
+}
+
+.opciones .layouts{
+  padding: 0 20px;
+  display: grid;
+  margin: 0 auto;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 1fr 1fr;
+  gap: 10px;
+}
+
+.opciones h3{
+  font-size: 14px;
+  font-weight: 400;
+  margin-top: 10px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.opciones .layouts button{
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  background-repeat: no-repeat;
+  background-clip: content-box;
+  background-position: 0%;
+}
+
+.opciones .layouts button:hover{
+  filter: brightness(130%);
+}
+
+.opciones .layouts button:nth-child(1){
+  background-image: url('../../assets/layout-icons/Default.svg');
+}
+
+.opciones .layouts button:nth-child(2){
+  background-image: url('../../assets/layout-icons/Vertical.svg');
+}
+
+.opciones .layouts button:nth-child(3){
+  background-image: url('../../assets/layout-icons/Horizontal.svg');
+}
+
+.opciones .layouts button:nth-child(4){
+  background-image: url('../../assets/layout-icons/bottom.svg');
+}
+
+.opciones .layouts button:nth-child(5){
+  background-image: url('../../assets/layout-icons/Top.svg');
+}
+
+.opciones .layouts button:nth-child(6){
+  background-image: url('../../assets/layout-icons/Left.svg');
+}
+
+.opciones .layouts button:nth-child(7){
+  background-image: url('../../assets/layout-icons/Right.svg');
+}
+
+.bri{
+  filter: brightness(150%);
+}
+
+/*----Tooltip----*/
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 80px;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 9;
+  top: 5px;
+  left: 160%; 
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+.tooltip .tooltiptext::after {
+  content: " ";
+  position: absolute;
+  top: 50%;
+  right: 100%; /* To the left of the tooltip */
+  margin-top: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent var(--background-color) transparent transparent;
+}
+
+
+
