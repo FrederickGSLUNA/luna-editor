@@ -1,12 +1,24 @@
 import Split from 'react-split-grid'
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import './style.css'
 import { ConfigContext } from '../../App'
+import { AiOutlineFullscreen, AiOutlineFullscreenExit } from 'react-icons/ai'
 
 export default function Layout (props) {
   const [config] = useContext(ConfigContext)
+  const [full, setFull] = useState(false)
 
   const layout = config.layout
+
+  function changeFull (language) {
+    setFull(!full)
+    const $languaje = document.querySelector(`#${language}`)
+    if ($languaje.classList.contains('full')) {
+      $languaje.classList.remove('full')
+    } else {
+      $languaje.classList.add('full')
+    }
+  }
 
   return (
     <Split
@@ -16,7 +28,7 @@ export default function Layout (props) {
       }) => (
         <div className={'grid ' + layout} {...getGridProps()}>
 
-          <div id='html' className='editor'><div className='language-icon' />{props.html}</div> {/* -------------HTML------------- */}
+          <div id='html' className='editor'><div className='full-icon' onClick={() => changeFull('html')}>{full ? <AiOutlineFullscreenExit /> : <AiOutlineFullscreen />}</div><div className='language-icon' />{props.html}</div> {/* -------------HTML------------- */}
 
           {layout === 'horizontal'
             ? <div className='gutter-row gutter-row-1' {...getGutterProps('row', 1)} />
@@ -32,7 +44,7 @@ export default function Layout (props) {
               : ''
           }
 
-          <div id='css' className='editor'><div className='language-icon' />{props.css}</div> {/* -------------CSS------------- */}
+          <div id='css' className='editor'><div className='full-icon' onClick={() => changeFull('css')}>{full ? <AiOutlineFullscreenExit /> : <AiOutlineFullscreen />}</div><div className='language-icon' />{props.css}</div> {/* -------------CSS------------- */}
 
           {
           layout === 'horizontal'
@@ -53,7 +65,7 @@ export default function Layout (props) {
               : ''
           }
 
-          <div id='js' className='editor'><div className='language-icon' />{props.js}</div> {/* -------------JS------------- */}
+          <div id='js' className='editor'><div className='full-icon' onClick={() => changeFull('js')}>{full ? <AiOutlineFullscreenExit /> : <AiOutlineFullscreen />}</div><div className='language-icon' />{props.js}</div> {/* -------------JS------------- */}
 
           {
             layout === 'default' ||

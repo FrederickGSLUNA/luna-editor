@@ -6,10 +6,13 @@ import { VscGear } from 'react-icons/vsc'
 import { MdScreenshotMonitor } from 'react-icons/md'
 import { GrRotateRight } from 'react-icons/gr'
 import { HiOutlineFolderDownload } from 'react-icons/hi'
+import { FiShare2 } from 'react-icons/fi'
 import { EditorContext } from '../../App'
 import { createZip } from '../../utils/createZip'
+// Notifications
+import { notifyNotShareable, notifyShare } from '../notifications/notifications'
 
-export default function Sidebar () {
+export default function Sidebar ({ isShareable, url }) {
   const [editor] = useContext(EditorContext)
 
   // Mostrando y ocultando opciones
@@ -45,6 +48,15 @@ export default function Sidebar () {
     $iframe.srcdoc = $iframe.srcdoc
   }
 
+  function share () {
+    if (isShareable) {
+      navigator.clipboard.writeText(url)
+        .then(() => notifyShare())
+    } else {
+      notifyNotShareable()
+    }
+  }
+
   return (
     <aside className='sidebar'>
       <nav>
@@ -74,6 +86,12 @@ export default function Sidebar () {
           </li>
         </ul>
         <ul>
+          <li>
+            <button className={`tooltip ${isShareable ? '' : 'not-shareable'}`} onClick={share}>
+              <FiShare2 className='icon not' />
+              <span className='tooltiptext'>Compartir</span>
+            </button>
+          </li>
           <li>
             <button className='tooltip' onClick={() => createZip(editor.html, editor.css, editor.js)}>
               <HiOutlineFolderDownload className='icon not' />

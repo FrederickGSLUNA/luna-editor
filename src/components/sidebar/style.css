@@ -201,4 +201,8 @@ button.logo-luna{
 }
 
 
-
+/* Not shareable */
+.not-shareable{
+  filter: brightness(50%);
+  cursor: default !important;
+}

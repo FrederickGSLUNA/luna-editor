@@ -12,6 +12,7 @@ import { encode, decode } from 'js-base64'
 // Notifications
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+// import Console from './components/console/Console'
 
 export const ConfigContext = createContext()
 export const EditorContext = createContext()
@@ -44,14 +45,14 @@ function App () {
     js: ''
   })
 
+  const [isShareable, setIsShareable] = useState(true)
+  const [url, setUrl] = useState('')
+
   useEffect(() => {
     init()
   }, [])
 
   useEffect(() => {
-    if (config.clearConsole) {
-      console.clear() // Limpiar la consola
-    }
     update()
   }, [editor])
 
@@ -73,6 +74,22 @@ function App () {
     const html = createHTML(editor.html, editor.css, editor.js)
     const iframe = document.querySelector('#resultadoIframe')
     iframe.setAttribute('srcdoc', html)
+
+    const isFirefox = navigator.userAgent.toLowerCase().indexOf('firefox') > -1
+
+    const maxlength = isFirefox ? 2000 : 3000
+
+    if (window.location.href.length < maxlength) {
+      setIsShareable(true)
+    } else {
+      setIsShareable(false)
+    }
+
+    setUrl(window.location.href)
+
+    if (config.clearConsole) {
+      console.clear() // Limpiar la consola
+    }
   }
 
   function createHTML (html, css, js) {
@@ -103,7 +120,7 @@ function App () {
     <ConfigContext.Provider value={[config, setConfig]}>
       <EditorContext.Provider value={[editor, setEditor]}>
         <div className='App'>
-          <Sidebar />
+          <Sidebar isShareable={isShareable} url={url} />
           <SidebarOptions />
           <Layout
             html={<EditorHTML />}
@@ -111,6 +128,7 @@ function App () {
             js={<EditorJS />}
             resultado={<Preview />}
           />
+          {/* <Console /> */}
         </div>
         <ToastContainer />
       </EditorContext.Provider>

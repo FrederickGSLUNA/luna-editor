@@ -23,3 +23,27 @@ export const notifyVimDesactivate = () =>
     progress: undefined,
     theme: 'dark'
   })
+
+export const notifyShare = () =>
+  toast('✔️ La URL se copió al portapapeles', {
+    position: 'top-right',
+    autoClose: 500,
+    hideProgressBar: true,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: 'dark'
+  })
+
+export const notifyNotShareable = () =>
+  toast('❌ La URL es damasiado larga', {
+    position: 'top-right',
+    autoClose: 500,
+    hideProgressBar: true,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: 'dark'
+  })

@@ -1,3 +1,11 @@
-.scrollbar.vertical{
+.scrollbar.vertical, .slider{
   width: 5px !important;
 }
+
+.scrollbar.vertical:hover, .slider:hover{
+  width: 10px !important;
+}
+
+/* .view-line{
+  margin-top: 10px;
+} */

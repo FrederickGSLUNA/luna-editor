@@ -199,3 +199,26 @@
   background-image: url('../../assets/dev-icons/js.svg');
   border-radius: 5px;
 }
+
+/* Icon Resize */
+.full-icon{
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  background-repeat: no-repeat;
+  z-index: 9;
+  transition: opacity .1s;
+  cursor: pointer;
+}
+
+.full-icon svg{
+  width: 20px;
+  height: 20px;
+  fill: var(--text-color);
+}
+
+.full-icon:hover svg{
+  filter: brightness(130%);
+}
