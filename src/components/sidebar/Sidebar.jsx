@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import './style.css'
 import logo from '../../assets/luna-icon-light.png'
 import vimLogo from '../../assets/vim-logo.svg'
@@ -7,13 +7,16 @@ import { MdScreenshotMonitor } from 'react-icons/md'
 import { GrRotateRight } from 'react-icons/gr'
 import { HiOutlineFolderDownload } from 'react-icons/hi'
 import { FiShare2 } from 'react-icons/fi'
+import { RiShareBoxLine } from 'react-icons/ri'
 import { EditorContext } from '../../App'
 import { createZip } from '../../utils/createZip'
 // Notifications
 import { notifyNotShareable, notifyShare } from '../notifications/notifications'
 
-export default function Sidebar ({ isShareable, url }) {
+export default function Sidebar ({ isShareable, url, createHTML }) {
   const [editor] = useContext(EditorContext)
+
+  const [previewWindow, setPreviewWindow] = useState(null)
 
   // Mostrando y ocultando opciones
   function handleShowOptions () {
@@ -57,6 +60,26 @@ export default function Sidebar ({ isShareable, url }) {
     }
   }
 
+  useEffect(() => {
+    if (previewWindow) {
+      const previewHtml = createHTML(editor.html, editor.css, editor.js)
+      const blob = new Blob([previewHtml], { type: 'text/html' })
+      previewWindow.location.href = URL.createObjectURL(blob)
+    }
+  }, [editor, previewWindow])
+
+  function handlePreviewButtonClick () {
+    if (previewWindow) {
+      previewWindow.close()
+    }
+
+    const previewHtml = createHTML(editor.html, editor.css, editor.js)
+    const blob = new Blob([previewHtml], { type: 'text/html' })
+    const url = URL.createObjectURL(blob)
+    const newPreviewWindow = window.open(url)
+    setPreviewWindow(newPreviewWindow)
+  }
+
   return (
     <aside className='sidebar'>
       <nav>
@@ -76,6 +99,12 @@ export default function Sidebar ({ isShareable, url }) {
             <button id='full-preview' className='tooltip' onClick={fullPreview}>
               <MdScreenshotMonitor className='icon' />
               <span className='tooltiptext'>FullScreen</span>
+            </button>
+          </li>
+          <li>
+            <button id='new-tab-preview' className='tooltip' onClick={handlePreviewButtonClick}>
+              <RiShareBoxLine className='icon' />
+              <span className='tooltiptext'>Preview</span>
             </button>
           </li>
           <li>

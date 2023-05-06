@@ -120,7 +120,7 @@ function App () {
     <ConfigContext.Provider value={[config, setConfig]}>
       <EditorContext.Provider value={[editor, setEditor]}>
         <div className='App'>
-          <Sidebar isShareable={isShareable} url={url} />
+          <Sidebar isShareable={isShareable} url={url} createHTML={createHTML} />
           <SidebarOptions />
           <Layout
             html={<EditorHTML />}
