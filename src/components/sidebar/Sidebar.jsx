@@ -85,30 +85,30 @@ export default function Sidebar ({ isShareable, url, createHTML }) {
       <nav>
         <ul>
           <li>
-            <button className='logo-luna'>
+            <button className='logo-luna' title='logo'>
               <img src={logo} width='38' height='38' alt='logo' />
             </button>
           </li>
           <li>
-            <button id='btnVim' className='tooltip' name='vim-mode'>
+            <button id='btnVim' className='tooltip' title='vim-mode'>
               <img className='icon' src={vimLogo} width='30' height='30' alt='vim-logo' />
               <span className='tooltiptext'>Modo Vim</span>
             </button>
           </li>
           <li>
-            <button id='full-preview' className='tooltip' onClick={fullPreview} name='pantalla-completa'>
+            <button id='full-preview' className='tooltip' onClick={fullPreview} title='pantalla-completa'>
               <MdScreenshotMonitor className='icon' />
               <span className='tooltiptext'>FullScreen</span>
             </button>
           </li>
           <li>
-            <button id='new-tab-preview' className='tooltip' onClick={handlePreviewButtonClick} name='preview'>
+            <button id='new-tab-preview' className='tooltip' onClick={handlePreviewButtonClick} title='preview'>
               <RiShareBoxLine className='icon' />
               <span className='tooltiptext'>Preview</span>
             </button>
           </li>
           <li>
-            <button className='tooltip' onClick={rechargeIframe} name='recargar-iframe'>
+            <button className='tooltip' onClick={rechargeIframe} title='recargar-iframe'>
               <GrRotateRight className='icon' />
               <span className='tooltiptext'>Recargar</span>
             </button>
@@ -116,19 +116,19 @@ export default function Sidebar ({ isShareable, url, createHTML }) {
         </ul>
         <ul>
           <li>
-            <button className={`tooltip ${isShareable ? '' : 'not-shareable'}`} onClick={share} name='compartir'>
+            <button className={`tooltip ${isShareable ? '' : 'not-shareable'}`} onClick={share} title='compartir'>
               <FiShare2 className='icon not' />
               <span className='tooltiptext'>Compartir</span>
             </button>
           </li>
           <li>
-            <button className='tooltip' onClick={() => createZip(editor.html, editor.css, editor.js)} name='descargar'>
+            <button className='tooltip' onClick={() => createZip(editor.html, editor.css, editor.js)} title='descargar'>
               <HiOutlineFolderDownload className='icon not' />
               <span className='tooltiptext'>Descargar</span>
             </button>
           </li>
           <li>
-            <button id='gear' className='tooltip' onClick={handleShowOptions} name='opciones'>
+            <button id='gear' className='tooltip' onClick={handleShowOptions} title='opciones'>
               <VscGear className='icon' />
               <span className='tooltiptext'>Opciones</span>
             </button>
