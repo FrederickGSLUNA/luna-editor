@@ -9,5 +9,12 @@ export default defineConfig({
       main: './index.html',
       robots: './robots.txt'
     }
-  }
+  },
+  outDir: 'dist',
+  copy: [
+    {
+      from: 'public/robots.txt',
+      to: 'robots.txt'
+    }
+  ]
 })
